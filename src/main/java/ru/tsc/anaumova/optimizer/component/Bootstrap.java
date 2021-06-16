@@ -2,10 +2,9 @@ package ru.tsc.anaumova.optimizer.component;
 
 import ru.tsc.anaumova.optimizer.model.AbstractItem;
 import ru.tsc.anaumova.optimizer.model.AbstractSafe;
+import ru.tsc.anaumova.optimizer.model.Safe;
 import ru.tsc.anaumova.optimizer.repository.IAbstractItemRepository;
-import ru.tsc.anaumova.optimizer.repository.IAbstractSafeRepository;
 import ru.tsc.anaumova.optimizer.repository.ItemRepository;
-import ru.tsc.anaumova.optimizer.repository.SafeRepository;
 import ru.tsc.anaumova.optimizer.service.AbstractSafeService;
 import ru.tsc.anaumova.optimizer.service.SafeService;
 
@@ -17,9 +16,7 @@ public class Bootstrap {
 
     private static final List<AbstractItem> items = itemRepository.getAll();
 
-    private static final IAbstractSafeRepository safeRepository = new SafeRepository();
-
-    private static final AbstractSafe safe = safeRepository.getSafeById(0);
+    private static final Safe safe = new Safe(10);
 
     private static final AbstractSafeService safeService = new SafeService(safe);
 
