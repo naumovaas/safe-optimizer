@@ -1,7 +1,6 @@
 package ru.tsc.anaumova.optimizer.component;
 
 import ru.tsc.anaumova.optimizer.model.AbstractItem;
-import ru.tsc.anaumova.optimizer.model.AbstractSafe;
 import ru.tsc.anaumova.optimizer.model.Safe;
 import ru.tsc.anaumova.optimizer.repository.IAbstractItemRepository;
 import ru.tsc.anaumova.optimizer.repository.ItemRepository;

@@ -10,7 +10,6 @@ public class Optimizer {
         int i = matrix.length - 1;
         int j = matrix[0].length - 1;
         findResult(matrix, i, j);
-
     }
 
     public static void findResult(final int[][] matrix, final int i, final int j){

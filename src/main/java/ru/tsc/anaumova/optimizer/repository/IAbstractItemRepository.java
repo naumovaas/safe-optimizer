@@ -6,10 +6,6 @@ import java.util.List;
 
 public interface IAbstractItemRepository {
 
-//    void add (AbstractItem item);
-//
-//    void addAll(List<AbstractItem> items);
-
     List<AbstractItem> getAll();
 
 }

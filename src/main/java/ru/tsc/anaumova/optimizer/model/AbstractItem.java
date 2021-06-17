@@ -42,4 +42,5 @@ public class AbstractItem {
     public String toString() {
         return "title: " + title + "; cost: " + cost + "; size: " + size + ";";
     }
+
 }
