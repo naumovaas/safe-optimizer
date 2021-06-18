@@ -1,7 +1,7 @@
 package ru.tsc.anaumova.optimizer.component;
 
 import org.jetbrains.annotations.NotNull;
-import ru.tsc.anaumova.optimizer.model.AbstractItem;
+import ru.tsc.anaumova.optimizer.model.Item;
 import ru.tsc.anaumova.optimizer.model.Safe;
 import ru.tsc.anaumova.optimizer.repository.IAbstractItemRepository;
 import ru.tsc.anaumova.optimizer.repository.ItemRepository;
@@ -16,7 +16,7 @@ public class Bootstrap {
     private static final IAbstractItemRepository itemRepository = new ItemRepository();
 
     @NotNull
-    private static final List<AbstractItem> items = itemRepository.getAll();
+    private static final List<Item> items = itemRepository.getAll();
 
     @NotNull
     private static final Safe safe = new Safe(10);
@@ -24,7 +24,7 @@ public class Bootstrap {
     @NotNull
     private static final AbstractSafeService safeService = new SafeService(safe);
 
-    public static List<AbstractItem> getItems() {
+    public static List<Item> getItems() {
         return items;
     }
 

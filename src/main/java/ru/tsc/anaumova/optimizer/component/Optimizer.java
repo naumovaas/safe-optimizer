@@ -1,7 +1,7 @@
 package ru.tsc.anaumova.optimizer.component;
 
 import org.jetbrains.annotations.NotNull;
-import ru.tsc.anaumova.optimizer.model.AbstractItem;
+import ru.tsc.anaumova.optimizer.model.Item;
 
 import java.util.List;
 
@@ -41,7 +41,7 @@ public class Optimizer {
      */
     public static int[][] calcMatrix(){
         final int safeCapacity = Bootstrap.getSafe().getCapacity();
-        final List<AbstractItem> items = Bootstrap.getItems();
+        final List<Item> items = Bootstrap.getItems();
         final int itemCount = items.size();
         int[][] array = new int[itemCount + 1][safeCapacity+1];
         for (int i = 1; i <= itemCount; i++)

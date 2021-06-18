@@ -1,9 +1,28 @@
 package ru.tsc.anaumova.optimizer.model;
 
-public class Safe extends AbstractSafe {
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Safe {
+
+    private final int capacity;
+
+    @NotNull
+    protected List<Item> items = new ArrayList<>();
 
     public Safe(int capacity) {
-        super(capacity);
+        this.capacity = capacity;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    @NotNull
+    public List<Item> getItems() {
+        return items;
     }
 
 }

@@ -1,21 +1,19 @@
 package ru.tsc.anaumova.optimizer.service;
 
 import org.jetbrains.annotations.NotNull;
-import ru.tsc.anaumova.optimizer.model.AbstractItem;
-import ru.tsc.anaumova.optimizer.model.AbstractSafe;
+import ru.tsc.anaumova.optimizer.model.Item;
+import ru.tsc.anaumova.optimizer.model.Safe;
 
-public class AbstractSafeService implements IAbstractSafeService{
+public abstract class AbstractSafeService implements IAbstractSafeService{
 
     @NotNull
-    private final AbstractSafe safe;
+    protected final Safe safe;
 
-    public AbstractSafeService(AbstractSafe safe) {
+    public AbstractSafeService(Safe safe) {
         this.safe = safe;
     }
 
     @Override
-    public void addItemToSafe(@NotNull final AbstractItem item) {
-        safe.getItems().add(item);
-    }
+    public abstract void addItemToSafe(@NotNull final Item item);
 
 }
