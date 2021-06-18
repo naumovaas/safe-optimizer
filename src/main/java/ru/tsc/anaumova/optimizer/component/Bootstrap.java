@@ -1,5 +1,6 @@
 package ru.tsc.anaumova.optimizer.component;
 
+import org.jetbrains.annotations.NotNull;
 import ru.tsc.anaumova.optimizer.model.AbstractItem;
 import ru.tsc.anaumova.optimizer.model.Safe;
 import ru.tsc.anaumova.optimizer.repository.IAbstractItemRepository;
@@ -11,12 +12,16 @@ import java.util.List;
 
 public class Bootstrap {
 
+    @NotNull
     private static final IAbstractItemRepository itemRepository = new ItemRepository();
 
+    @NotNull
     private static final List<AbstractItem> items = itemRepository.getAll();
 
+    @NotNull
     private static final Safe safe = new Safe(10);
 
+    @NotNull
     private static final AbstractSafeService safeService = new SafeService(safe);
 
     public static List<AbstractItem> getItems() {
@@ -27,14 +32,15 @@ public class Bootstrap {
         return safeService;
     }
 
+    public static Safe getSafe() {
+        return safe;
+    }
+
     public static void start(){
-        int[][] matrix = Optimizer.calcMatrix(items, safe.getCapacity());
+        final int[][] matrix = Optimizer.calcMatrix();
         Optimizer.findResult(matrix);
 
-        System.out.println(safe.getId());
-        System.out.println(safe.getCapacity());
         System.out.println(safe.getItems());
-
     }
 
 }

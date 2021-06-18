@@ -1,18 +1,30 @@
 package ru.tsc.anaumova.optimizer.component;
 
+import org.jetbrains.annotations.NotNull;
 import ru.tsc.anaumova.optimizer.model.AbstractItem;
 
 import java.util.List;
 
 public class Optimizer {
 
-    public static void findResult(final int[][] matrix){
-        int i = matrix.length - 1;
-        int j = matrix[0].length - 1;
-        findResult(matrix, i, j);
+    /**
+     * Для переданой матрицы запускает метод определения предметов, составляющих оптимальное решение.
+     *
+     * @param matrix матрица стоимостей разных наборов допустимых предметов.
+     */
+    public static void findResult(@NotNull final int[][] matrix){
+        findResult(matrix, matrix.length - 1, matrix[0].length - 1);
     }
 
-    public static void findResult(final int[][] matrix, final int i, final int j){
+    /**
+     * Рекурсивно восстанавливаем путь от наибольшего значения в матрице к началу.
+     * Соответствующие предметы кладем в сейф.
+     *
+     * @param matrix матрица стоимостей разных наборов допустимых предметов.
+     * @param i индекс наибольшего значения на данном этапе.
+     * @param j индекс наибольшего значения на данном этапе.
+     */
+    private static void findResult(@NotNull final int[][] matrix, final int i, final int j){
         if(matrix[i][j] == 0) return;
         if (matrix[i][j] == matrix[i - 1][j])
             findResult(matrix, i-1, j);
@@ -22,7 +34,14 @@ public class Optimizer {
         }
     }
 
-    public static int[][] calcMatrix(final List<AbstractItem> items, final int safeCapacity){
+    /**
+     * Строим матрицу стоимостей сейфа для разных наборов допустимых предметов.
+     *
+     * @return полученная матрица.
+     */
+    public static int[][] calcMatrix(){
+        final int safeCapacity = Bootstrap.getSafe().getCapacity();
+        final List<AbstractItem> items = Bootstrap.getItems();
         final int itemCount = items.size();
         int[][] array = new int[itemCount + 1][safeCapacity+1];
         for (int i = 1; i <= itemCount; i++)
@@ -32,12 +51,6 @@ public class Optimizer {
                 else
                     array[i][j] = Math.max(array[i - 1][j], array[i - 1][j - items.get(i-1).getSize()] + items.get(i-1).getCost());
             }
-
-        for (int i = 0; i <= itemCount; i++) {
-            for (int j = 0; j <= safeCapacity; j++)
-                System.out.printf("%4d", array[i][j]);
-            System.out.println();
-        }
         return array;
     }
 

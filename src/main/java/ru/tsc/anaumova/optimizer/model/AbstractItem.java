@@ -1,7 +1,10 @@
 package ru.tsc.anaumova.optimizer.model;
 
+import org.jetbrains.annotations.Nullable;
+
 public class AbstractItem {
 
+    @Nullable
     protected String title;
 
     protected int size;
@@ -14,28 +17,12 @@ public class AbstractItem {
         this.cost = cost;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public int getSize() {
         return size;
     }
 
-    public void setSize(int volume) {
-        this.size = volume;
-    }
-
     public int getCost() {
         return cost;
-    }
-
-    public void setCost(int cost) {
-        this.cost = cost;
     }
 
     @Override
