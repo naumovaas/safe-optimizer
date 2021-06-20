@@ -1,30 +1,26 @@
 package ru.tsc.anaumova.optimizer.repository;
 
+import com.google.gson.reflect.TypeToken;
 import org.jetbrains.annotations.NotNull;
+import ru.tsc.anaumova.optimizer.component.FileReader;
 import ru.tsc.anaumova.optimizer.model.Item;
 
 import java.util.List;
 
-public class ItemRepository extends AbstractItemRepository {
+public class ItemRepository implements IAbstractItemRepository {
 
-    {
-        list.add(new Item("item - 1", 10, 100));
-        list.add(new Item("item - 2", 5, 60));
-        list.add(new Item("item - 3", 5, 60));
+    @NotNull
+    private final String path;
 
-//        list.add(new Item("item - 1", 3, 1));
-//        list.add(new Item("item - 2", 4, 6));
-//        list.add(new Item("item - 3", 5, 4));
-//        list.add(new Item("item - 4", 8, 7));
-//        list.add(new Item("item - 5", 9, 6));
-
+    public ItemRepository(@NotNull String path) {
+        this.path = path;
     }
 
     @Override
     @NotNull
     public List<Item> getAll(){
-        //перед этим прочитать из файла
-        return list;
+        FileReader<Item> fileReader = new FileReader<>();
+        return fileReader.readFromJSON(path, new TypeToken<List<Item>>(){}.getType());
     }
 
 }

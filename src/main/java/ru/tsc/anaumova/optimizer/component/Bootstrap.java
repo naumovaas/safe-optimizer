@@ -5,7 +5,7 @@ import ru.tsc.anaumova.optimizer.model.Item;
 import ru.tsc.anaumova.optimizer.model.Safe;
 import ru.tsc.anaumova.optimizer.repository.IAbstractItemRepository;
 import ru.tsc.anaumova.optimizer.repository.ItemRepository;
-import ru.tsc.anaumova.optimizer.service.AbstractSafeService;
+import ru.tsc.anaumova.optimizer.service.IAbstractSafeService;
 import ru.tsc.anaumova.optimizer.service.SafeService;
 
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.List;
 public class Bootstrap {
 
     @NotNull
-    private static final IAbstractItemRepository itemRepository = new ItemRepository();
+    private static final IAbstractItemRepository itemRepository = new ItemRepository("items.json");
 
     @NotNull
     private static final List<Item> items = itemRepository.getAll();
@@ -22,18 +22,16 @@ public class Bootstrap {
     private static final Safe safe = new Safe(10);
 
     @NotNull
-    private static final AbstractSafeService safeService = new SafeService(safe);
+    private static final IAbstractSafeService safeService = new SafeService(safe);
 
+    @NotNull
     public static List<Item> getItems() {
         return items;
     }
 
-    public static AbstractSafeService getSafeService() {
+    @NotNull
+    public static IAbstractSafeService getSafeService() {
         return safeService;
-    }
-
-    public static Safe getSafe() {
-        return safe;
     }
 
     public static void start(){

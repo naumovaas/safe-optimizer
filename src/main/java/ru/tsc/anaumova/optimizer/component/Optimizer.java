@@ -39,7 +39,7 @@ public class Optimizer {
      *
      * @return полученная матрица.
      */
-    public static int[][] calcMatrix(final List<Item> items, final int safeCapacity){
+    public static int[][] calcMatrix(@NotNull final List<Item> items, final int safeCapacity){
         final int itemCount = items.size();
         int[][] array = new int[itemCount + 1][safeCapacity+1];
         for (int i = 1; i <= itemCount; i++)
