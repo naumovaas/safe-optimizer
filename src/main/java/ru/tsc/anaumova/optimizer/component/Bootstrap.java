@@ -37,7 +37,7 @@ public class Bootstrap {
     }
 
     public static void start(){
-        final int[][] matrix = Optimizer.calcMatrix();
+        final int[][] matrix = Optimizer.calcMatrix(items, safe.getCapacity());
         Optimizer.findResult(matrix);
 
         System.out.println(safe.getItems());

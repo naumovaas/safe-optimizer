@@ -17,20 +17,20 @@ public class Optimizer {
     }
 
     /**
-     * Рекурсивно восстанавливаем путь от наибольшего значения в матрице к началу.
+     * Восстанавливаем путь от наибольшего значения в матрице к началу.
      * Соответствующие предметы кладем в сейф.
      *
      * @param matrix матрица стоимостей разных наборов допустимых предметов.
      * @param i индекс наибольшего значения на данном этапе.
      * @param j индекс наибольшего значения на данном этапе.
      */
-    private static void findResult(@NotNull final int[][] matrix, final int i, final int j){
-        if(matrix[i][j] == 0) return;
-        if (matrix[i][j] == matrix[i - 1][j])
-            findResult(matrix, i-1, j);
-        else {
-            findResult(matrix, i - 1, j - Bootstrap.getItems().get(i - 1).getSize());
-            Bootstrap.getSafeService().addItemToSafe(Bootstrap.getItems().get(i - 1));
+    private static void findResult(@NotNull final int[][] matrix, int i, int j) {
+        while (matrix[i][j] != 0) {
+            if (matrix[i][j] != matrix[i - 1][j]) {
+                j -= Bootstrap.getItems().get(i - 1).getSize();
+                Bootstrap.getSafeService().addItemToSafe(Bootstrap.getItems().get(i - 1));
+            }
+            i --;
         }
     }
 
@@ -39,9 +39,7 @@ public class Optimizer {
      *
      * @return полученная матрица.
      */
-    public static int[][] calcMatrix(){
-        final int safeCapacity = Bootstrap.getSafe().getCapacity();
-        final List<Item> items = Bootstrap.getItems();
+    public static int[][] calcMatrix(final List<Item> items, final int safeCapacity){
         final int itemCount = items.size();
         int[][] array = new int[itemCount + 1][safeCapacity+1];
         for (int i = 1; i <= itemCount; i++)
