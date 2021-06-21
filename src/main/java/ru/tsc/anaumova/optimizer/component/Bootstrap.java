@@ -15,8 +15,8 @@ public class Bootstrap {
 
     public void start(){
         Optimizer optimizer = new Optimizer(itemRepository, safe);
-        final int[][] matrix = optimizer.calcMatrix(safe.getCapacity());
-        optimizer.findResult(matrix);
+        optimizer.optimizeSafe();
+
         System.out.println(safe.getItems());
     }
 

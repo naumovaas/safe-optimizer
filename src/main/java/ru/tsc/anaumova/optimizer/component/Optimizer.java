@@ -17,9 +17,22 @@ public class Optimizer {
     @NotNull
     private final IAbstractSafeService safeService;
 
+    @NotNull
+    private final Safe safe;
+
     public Optimizer(@NotNull IAbstractItemRepository itemRepository, @NotNull Safe safe) {
+        this.safe = safe;
         items = itemRepository.getAll();
         safeService = new SafeService(safe);
+    }
+
+    /**
+     * Методом динамического прогм=раммирования определяет набор предметов, имеющих наибольшую стоимость, и помещает их в сейф.
+     */
+    public void optimizeSafe(){
+        MatrixCalculator matrixCalculator = new MatrixCalculator(items, safe);
+        int[][] matrix = matrixCalculator.calcMatrix();
+        findResult(matrix);
     }
 
     /**
@@ -27,12 +40,12 @@ public class Optimizer {
      *
      * @param matrix матрица стоимостей разных наборов допустимых предметов.
      */
-    public void findResult(@NotNull final int[][] matrix){
-        findResult(matrix, matrix.length - 1, matrix[0].length - 1);
+    private void findResult(@NotNull final int[][] matrix){
+        findResult(matrix, getItemsCount(), getSafeCapacity());
     }
 
     /**
-     * Восстанавливаем путь от наибольшего значения в матрице к началу.
+     * Восстанавливает путь от наибольшего значения в матрице к началу.
      * Соответствующие предметы кладем в сейф.
      *
      * @param matrix матрица стоимостей разных наборов допустимых предметов.
@@ -41,7 +54,7 @@ public class Optimizer {
      */
     private void findResult(@NotNull final int[][] matrix, int i, int j) {
         while (matrix[i][j] != 0) {
-            if (matrix[i][j] != matrix[i - 1][j]) {
+            if (isItemAddToSafe(matrix, i, j)) {
                 j -= items.get(i - 1).getSize();
                 safeService.addItemToSafe(items.get(i - 1));
             }
@@ -49,22 +62,16 @@ public class Optimizer {
         }
     }
 
-    /**
-     * Строим матрицу стоимостей сейфа для разных наборов допустимых предметов.
-     *
-     * @return полученная матрица.
-     */
-    public int[][] calcMatrix(final int safeCapacity){
-        final int itemCount = items.size();
-        int[][] array = new int[itemCount + 1][safeCapacity+1];
-        for (int i = 1; i <= itemCount; i++)
-            for (int j = 1; j <= safeCapacity; j++) {
-                if (j < items.get(i-1).getSize())
-                    array[i][j] = array[i - 1][j];
-                else
-                    array[i][j] = Math.max(array[i - 1][j], array[i - 1][j - items.get(i-1).getSize()] + items.get(i-1).getCost());
-            }
-        return array;
+    private boolean isItemAddToSafe(@NotNull final int[][] matrix, int i, int j){
+        return matrix[i][j] != matrix[i - 1][j];
+    }
+
+    private int getItemsCount(){
+        return items.size();
+    }
+
+    private int getSafeCapacity(){
+        return safe.getCapacity();
     }
 
 }
