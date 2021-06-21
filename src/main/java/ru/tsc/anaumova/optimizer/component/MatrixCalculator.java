@@ -40,15 +40,32 @@ public class MatrixCalculator {
      */
     @NotNull
     private int[][] calcMatrix(final int itemCount, final int safeCapacity){
-        int[][] array = new int[itemCount + 1][safeCapacity+1];
+        int[][] matrix = new int[itemCount + 1][safeCapacity+1];
         for (int i = 1; i <= itemCount; i++)
-            for (int j = 1; j <= safeCapacity; j++) {
-                if (j < items.get(i-1).getSize())
-                    array[i][j] = array[i - 1][j];
-                else
-                    array[i][j] = Math.max(array[i - 1][j], array[i - 1][j - items.get(i-1).getSize()] + items.get(i-1).getCost());
-            }
-        return array;
+            for (int j = 1; j <= safeCapacity; j++)
+                matrix[i][j] = calcElement(matrix, i, j);
+        return matrix;
+    }
+
+    private int calcElement(@NotNull final int[][] matrix, final int i, final int j){
+        int result;
+        if (isEnoughSpaceForItem(i, j))
+            result = calcCostSumWithItem(matrix, i, j);
+        else
+            result = calcCostSumWithoutItem(matrix, i, j);
+        return result;
+    }
+
+    private boolean isEnoughSpaceForItem(final int itemIndex, final int freeSpaceInSafe){
+        return freeSpaceInSafe >= items.get(itemIndex-1).getSize();
+    }
+
+    private int calcCostSumWithItem(@NotNull final int[][] matrix, final int i, final int j){
+        return Math.max(matrix[i - 1][j], matrix[i - 1][j - items.get(i-1).getSize()] + items.get(i-1).getCost());
+    }
+
+    private int calcCostSumWithoutItem(@NotNull final int[][] matrix, final int i, final int j){
+        return matrix[i - 1][j];
     }
 
 }
