@@ -10,7 +10,7 @@ import ru.tsc.anaumova.optimizer.repository.ItemRepository;
 public class IAbstractItemRepositoryTest {
 
     @NotNull
-    IAbstractItemRepository repository;
+    private IAbstractItemRepository repository;
 
     @Before
     public void init() {

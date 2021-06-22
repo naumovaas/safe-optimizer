@@ -14,16 +14,13 @@ import java.util.List;
 public class MatrixCalculatorTest {
 
     @NotNull
-    MatrixCalculator matrixCalculator;
+    private MatrixCalculator matrixCalculator;
 
     @NotNull
-    public List<Item> items = new ArrayList<>();
+    private final List<Item> items = new ArrayList<>();
 
     @NotNull
-    public Safe safe;
-
-    @NotNull
-    public int[][] resultMatrix = {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    private final int[][] resultMatrix = {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                                     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100},
                                     {0, 0, 0, 0, 0, 60, 60, 60, 60, 60, 100},
                                     {0, 0, 0, 0, 0, 60, 60, 60, 60, 60, 120}};
@@ -33,7 +30,7 @@ public class MatrixCalculatorTest {
         items.add(new Item("item - 1", 10, 100));
         items.add(new Item("item - 2", 5, 60));
         items.add(new Item("item - 3", 5, 60));
-        safe = new Safe(10);
+        Safe safe = new Safe(10);
         matrixCalculator = new MatrixCalculator(items, safe);
     }
 

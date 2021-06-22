@@ -12,10 +12,10 @@ import ru.tsc.anaumova.optimizer.service.SafeService;
 public class IAbstractSafeServiceTest {
 
     @NotNull
-    Safe safe;
+    private Safe safe;
 
     @NotNull
-    IAbstractSafeService safeService;
+    private IAbstractSafeService safeService;
 
     @Before
     public void init() {

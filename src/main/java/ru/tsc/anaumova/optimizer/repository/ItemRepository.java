@@ -18,8 +18,8 @@ public class ItemRepository implements IAbstractItemRepository {
     @Override
     @NotNull
     public List<Item> getAll(){
-        FileReader<Item> fileReader = new FileReader<>();
-        return fileReader.readFromJSON(path, new TypeToken<List<Item>>(){}.getType());
+        FileReader<Item> fileReader = new FileReader<>(path);
+        return fileReader.readFromJSON(new TypeToken<List<Item>>(){}.getType());
     }
 
 }

@@ -12,14 +12,21 @@ import java.util.List;
 public class FileReader<T> {
 
     @NotNull
-    public List<T> readFromJSON(@NotNull final String path, @NotNull Type type){
+    final String path;
+
+    public FileReader(@NotNull String path) {
+        this.path = path;
+    }
+
+    @NotNull
+    public List<T> readFromJSON(@NotNull Type type){
         final Gson gson = new Gson();
-        final String jsonString = readJsonFromFile(path);
+        final String jsonString = readJsonFromFile();
         return gson.fromJson(jsonString, type);
     }
 
     @NotNull
-    public String readJsonFromFile(@NotNull final String path){
+    public String readJsonFromFile(){
         String jsonString = "";
         try {
             jsonString = new String(Files.readAllBytes(Paths.get(path)));
