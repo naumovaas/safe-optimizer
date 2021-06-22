@@ -20,19 +20,10 @@ public class Optimizer {
     @NotNull
     private final Safe safe;
 
-    public Optimizer(@NotNull IAbstractItemRepository itemRepository, @NotNull Safe safe) {
+    public Optimizer(@NotNull final List<Item> items, @NotNull Safe safe) {
         this.safe = safe;
-        items = itemRepository.getAll();
-        safeService = new SafeService(safe);
-    }
-
-    /**
-     * Методом динамического программирования определяет набор предметов, имеющих наибольшую стоимость, и помещает их в сейф.
-     */
-    public void optimizeSafe(){
-        MatrixCalculator matrixCalculator = new MatrixCalculator(items, safe);
-        int[][] matrix = matrixCalculator.calcMatrix();
-        findResult(matrix);
+        this.items = items;
+        this.safeService = new SafeService(safe);
     }
 
     /**
@@ -40,7 +31,7 @@ public class Optimizer {
      *
      * @param matrix матрица стоимостей разных наборов допустимых предметов.
      */
-    private void findResult(@NotNull final int[][] matrix){
+    public void findResult(@NotNull final int[][] matrix){
         findResult(matrix, getItemsCount(), getSafeCapacity());
     }
 

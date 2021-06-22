@@ -11,7 +11,7 @@ public class Item {
 
     private final int cost;
 
-    public Item(String title, int size, int cost) {
+    public Item(@Nullable String title, int size, int cost) {
         this.title = title;
         this.size = size;
         this.cost = cost;
@@ -23,6 +23,11 @@ public class Item {
 
     public int getCost() {
         return cost;
+    }
+
+    @Nullable
+    public String getTitle() {
+        return title;
     }
 
     @Override
