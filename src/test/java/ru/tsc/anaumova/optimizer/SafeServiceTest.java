@@ -9,7 +9,7 @@ import ru.tsc.anaumova.optimizer.model.Safe;
 import ru.tsc.anaumova.optimizer.service.IAbstractSafeService;
 import ru.tsc.anaumova.optimizer.service.SafeService;
 
-public class IAbstractSafeServiceTest {
+public class SafeServiceTest {
 
     @NotNull
     private Safe safe;

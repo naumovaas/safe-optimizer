@@ -7,7 +7,7 @@ import org.junit.Test;
 import ru.tsc.anaumova.optimizer.repository.IAbstractItemRepository;
 import ru.tsc.anaumova.optimizer.repository.ItemRepository;
 
-public class IAbstractItemRepositoryTest {
+public class ItemRepositoryTest {
 
     @NotNull
     private IAbstractItemRepository repository;
