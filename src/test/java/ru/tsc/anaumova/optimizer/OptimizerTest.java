@@ -12,6 +12,7 @@ import ru.tsc.anaumova.optimizer.repository.ItemRepository;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import static org.mockito.Mockito.*;
@@ -28,7 +29,7 @@ public class OptimizerTest {
     private Safe safe;
 
     @NotNull
-    private List<Item> result = new ArrayList<>();
+    private final List<Item> expectedResult = new ArrayList<>();
 
     @Before
     public void init(){
@@ -36,8 +37,8 @@ public class OptimizerTest {
         items.add(new Item("item - 1", 10, 100));
         items.add(new Item("item - 2", 5, 60));
         items.add(new Item("item - 3", 5, 60));
-        result.add(new Item("item - 2", 5, 60));
-        result.add(new Item("item - 3", 5, 60));
+        expectedResult.add(new Item("item - 2", 5, 60));
+        expectedResult.add(new Item("item - 3", 5, 60));
         repository = mock(ItemRepository.class);
         when(repository.getAll()).thenReturn(items);
         matrix = new int[][]{{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -51,7 +52,9 @@ public class OptimizerTest {
     public void findResultTest(){
         Optimizer optimizer = new Optimizer(repository.getAll(), safe);
         optimizer.findResult(matrix);
-        Assert.assertEquals(result.size(), safe.getItems().size());
+        List<Item> result = safe.getItems();
+        Assert.assertEquals(expectedResult.size(), result.size());
+
     }
 
 }

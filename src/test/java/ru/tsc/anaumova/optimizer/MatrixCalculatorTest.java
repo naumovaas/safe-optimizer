@@ -20,7 +20,7 @@ public class MatrixCalculatorTest {
     private final List<Item> items = new ArrayList<>();
 
     @NotNull
-    private final int[][] resultMatrix = {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    private final int[][] expectedResultMatrix = {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                                     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100},
                                     {0, 0, 0, 0, 0, 60, 60, 60, 60, 60, 100},
                                     {0, 0, 0, 0, 0, 60, 60, 60, 60, 60, 120}};
@@ -36,7 +36,7 @@ public class MatrixCalculatorTest {
 
     @Test
     public void calcMatrixTest(){
-        Assert.assertArrayEquals(resultMatrix, matrixCalculator.calcMatrix());
+        Assert.assertArrayEquals(expectedResultMatrix, matrixCalculator.calcMatrix());
     }
 
 }
