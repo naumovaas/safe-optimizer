@@ -6,17 +6,18 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class FileReader {
+public class ReaderJSON implements IFileReader {
 
     @NotNull
     final String path;
 
-    public FileReader(@NotNull String path) {
+    public ReaderJSON(@NotNull String path) {
         this.path = path;
     }
 
+    @Override
     @NotNull
-    public String readJsonFromFile(){
+    public String readFromFile(){
         String jsonString = "";
         try {
             jsonString = new String(Files.readAllBytes(Paths.get(path)));
