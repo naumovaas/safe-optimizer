@@ -1,13 +1,10 @@
 package ru.tsc.anaumova.optimizer.component;
 
 import org.jetbrains.annotations.NotNull;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.tsc.anaumova.optimizer.model.Item;
-import ru.tsc.anaumova.optimizer.model.Safe;
-import ru.tsc.anaumova.optimizer.repository.IAbstractItemRepository;
-import ru.tsc.anaumova.optimizer.repository.ItemRepository;
-import ru.tsc.anaumova.optimizer.service.AbstractSafeService;
-import ru.tsc.anaumova.optimizer.service.SafeService;
+import ru.tsc.anaumova.optimizer.service.*;
 
 import java.util.List;
 
@@ -15,10 +12,16 @@ import java.util.List;
 public class Bootstrap {
 
     @NotNull
-    private final IAbstractItemRepository itemRepository = new ItemRepository("items.json");
+    private final IItemService itemService;
 
     @NotNull
-    private final AbstractSafeService safeService = new SafeService(new Safe(10));
+    private final IAbstractSafeService safeService;
+
+    @Autowired
+    public Bootstrap(@NotNull IItemService itemService, @NotNull IAbstractSafeService safeService) {
+        this.itemService = itemService;
+        this.safeService = safeService;
+    }
 
     public List<Item> start(){
         optimizeSafe();
@@ -29,7 +32,7 @@ public class Bootstrap {
      * Методом динамического программирования определяет набор предметов, имеющих наибольшую стоимость, и помещает их в сейф.
      */
     public void optimizeSafe(){
-        List<Item> items = itemRepository.getAll();
+        List<Item> items = itemService.getAll();
         MatrixCalculator matrixCalculator = new MatrixCalculator(items, safeService.getSafe());
         Optimizer optimizer = new Optimizer(items, safeService.getSafe());
         int[][] matrix = matrixCalculator.calcMatrix();

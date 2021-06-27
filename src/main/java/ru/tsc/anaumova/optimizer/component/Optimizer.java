@@ -23,7 +23,7 @@ public class Optimizer {
     public Optimizer(@NotNull final List<Item> items, @NotNull Safe safe) {
         this.safe = safe;
         this.items = items;
-        this.safeService = new SafeService(safe);
+        this.safeService = new SafeService();
     }
 
     /**

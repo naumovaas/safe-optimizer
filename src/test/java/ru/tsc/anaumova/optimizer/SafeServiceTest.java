@@ -20,7 +20,7 @@ public class SafeServiceTest {
     @Before
     public void init() {
         safe = new Safe(10);
-        safeService = new SafeService(safe);
+        safeService = new SafeService();
     }
 
     @Test

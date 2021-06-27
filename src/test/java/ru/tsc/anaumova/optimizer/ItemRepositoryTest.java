@@ -14,7 +14,7 @@ public class ItemRepositoryTest {
 
     @Before
     public void init() {
-        repository = new ItemRepository("items.json");
+        repository = new ItemRepository();
     }
 
     @Test

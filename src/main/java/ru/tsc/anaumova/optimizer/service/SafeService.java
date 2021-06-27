@@ -1,17 +1,17 @@
 package ru.tsc.anaumova.optimizer.service;
 
 import org.jetbrains.annotations.NotNull;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import ru.tsc.anaumova.optimizer.model.Item;
 import ru.tsc.anaumova.optimizer.model.Safe;
 
 import java.util.List;
 
-@Component
+@Service
 public class SafeService extends AbstractSafeService{
 
-    public SafeService(Safe safe) {
-        super(safe);
+    public SafeService() {
+        super(new Safe(10));
     }
 
     @Override
