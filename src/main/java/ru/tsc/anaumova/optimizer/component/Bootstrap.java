@@ -17,10 +17,19 @@ public class Bootstrap {
     @NotNull
     private final IAbstractSafeService safeService;
 
+    @NotNull
+    private final MatrixCalculator matrixCalculator;
+
+    @NotNull
+    private final Optimizer optimizer;
+
     @Autowired
-    public Bootstrap(@NotNull IItemService itemService, @NotNull IAbstractSafeService safeService) {
+    public Bootstrap(@NotNull IItemService itemService, @NotNull IAbstractSafeService safeService,
+                     @NotNull MatrixCalculator matrixCalculator, @NotNull Optimizer optimizer) {
         this.itemService = itemService;
         this.safeService = safeService;
+        this.matrixCalculator = matrixCalculator;
+        this.optimizer = optimizer;
     }
 
     public List<Item> start(){
@@ -32,9 +41,6 @@ public class Bootstrap {
      * Методом динамического программирования определяет набор предметов, имеющих наибольшую стоимость, и помещает их в сейф.
      */
     public void optimizeSafe(){
-        List<Item> items = itemService.getAll();
-        MatrixCalculator matrixCalculator = new MatrixCalculator(items, safeService.getSafe());
-        Optimizer optimizer = new Optimizer(items, safeService.getSafe());
         int[][] matrix = matrixCalculator.calcMatrix();
         optimizer.findResult(matrix);
     }

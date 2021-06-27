@@ -1,14 +1,16 @@
 package ru.tsc.anaumova.optimizer.component;
 
 import org.jetbrains.annotations.NotNull;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import ru.tsc.anaumova.optimizer.model.Item;
 import ru.tsc.anaumova.optimizer.model.Safe;
-import ru.tsc.anaumova.optimizer.repository.IAbstractItemRepository;
 import ru.tsc.anaumova.optimizer.service.IAbstractSafeService;
-import ru.tsc.anaumova.optimizer.service.SafeService;
+import ru.tsc.anaumova.optimizer.service.IItemService;
 
 import java.util.List;
 
+@Component
 public class Optimizer {
 
     @NotNull
@@ -20,10 +22,11 @@ public class Optimizer {
     @NotNull
     private final Safe safe;
 
-    public Optimizer(@NotNull final List<Item> items, @NotNull Safe safe) {
-        this.safe = safe;
-        this.items = items;
-        this.safeService = new SafeService();
+    @Autowired
+    public Optimizer(@NotNull IItemService itemService, @NotNull IAbstractSafeService safeService) {
+        this.safe = safeService.getSafe();
+        this.items = itemService.getAll();
+        this.safeService = safeService;
     }
 
     /**

@@ -1,11 +1,16 @@
 package ru.tsc.anaumova.optimizer.component;
 
 import org.jetbrains.annotations.NotNull;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import ru.tsc.anaumova.optimizer.model.Item;
 import ru.tsc.anaumova.optimizer.model.Safe;
+import ru.tsc.anaumova.optimizer.service.IAbstractSafeService;
+import ru.tsc.anaumova.optimizer.service.IItemService;
 
 import java.util.List;
 
+@Component
 public class MatrixCalculator {
 
     @NotNull
@@ -15,10 +20,11 @@ public class MatrixCalculator {
 
     private final int safeCapacity;
 
-    public MatrixCalculator(@NotNull List<Item> items, @NotNull Safe safe) {
-        this.items = items;
+    @Autowired
+    public MatrixCalculator(@NotNull IItemService itemService, @NotNull IAbstractSafeService safeService) {
+        this.items = itemService.getAll();
         this.itemsCount = items.size();
-        this.safeCapacity = safe.getCapacity();
+        this.safeCapacity = safeService.getSafe().getCapacity();
     }
 
     /**
