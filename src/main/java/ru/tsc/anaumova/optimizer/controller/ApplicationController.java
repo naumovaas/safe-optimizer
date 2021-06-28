@@ -3,11 +3,10 @@ package ru.tsc.anaumova.optimizer.controller;
 import com.google.gson.Gson;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ru.tsc.anaumova.optimizer.component.Bootstrap;
 
-@Controller
+@RestController
 public class ApplicationController {
 
     @NotNull
@@ -23,9 +22,9 @@ public class ApplicationController {
         return "Welcome to application";
     }
 
-//    @PostMapping("/get-items")
-//    String getProductsList(){
-//        return new Gson().toJson(bootstrap.start());
-//    }
+    @GetMapping("/get-items")
+    String getProductsList(){
+        return new Gson().toJson(bootstrap.start());
+    }
 
 }
