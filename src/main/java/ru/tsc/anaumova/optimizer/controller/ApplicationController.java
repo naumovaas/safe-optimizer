@@ -18,15 +18,14 @@ public class ApplicationController {
         this.bootstrap = bootstrap;
     }
 
-    @GetMapping("/")
+    @GetMapping("/test")
     public String index() {
         return "Welcome to application";
     }
 
-    @GetMapping("/get-items")
-    @ResponseBody
-    String getProductsList(){
-        return new Gson().toJson(bootstrap.start());
-    }
+//    @PostMapping("/get-items")
+//    String getProductsList(){
+//        return new Gson().toJson(bootstrap.start());
+//    }
 
 }
