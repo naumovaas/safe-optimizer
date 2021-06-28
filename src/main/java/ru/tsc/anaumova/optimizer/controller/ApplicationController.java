@@ -17,11 +17,6 @@ public class ApplicationController {
         this.bootstrap = bootstrap;
     }
 
-    @GetMapping("/test")
-    public String index() {
-        return "Welcome to application";
-    }
-
     @GetMapping("/get-items")
     String getProductsList(){
         return new Gson().toJson(bootstrap.start());
