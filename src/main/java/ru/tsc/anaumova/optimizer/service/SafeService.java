@@ -31,6 +31,8 @@ public class SafeService extends AbstractSafeService{
 
     @Override
     public void cleanSafe() {
-        safe.getItems().removeAll(safe.getItems());
+        for (int i = safe.getItems().size() - 1; i >= 0; i--)
+            safe.getItems().remove(i);
     }
+
 }
