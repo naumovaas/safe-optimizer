@@ -12,9 +12,6 @@ import java.util.List;
 public class Bootstrap {
 
     @NotNull
-    private final IItemService itemService;
-
-    @NotNull
     private final IAbstractSafeService safeService;
 
     @NotNull
@@ -24,9 +21,9 @@ public class Bootstrap {
     private final Optimizer optimizer;
 
     @Autowired
-    public Bootstrap(@NotNull IItemService itemService, @NotNull IAbstractSafeService safeService,
-                     @NotNull MatrixCalculator matrixCalculator, @NotNull Optimizer optimizer) {
-        this.itemService = itemService;
+    public Bootstrap(@NotNull IAbstractSafeService safeService,
+                     @NotNull MatrixCalculator matrixCalculator,
+                     @NotNull Optimizer optimizer) {
         this.safeService = safeService;
         this.matrixCalculator = matrixCalculator;
         this.optimizer = optimizer;

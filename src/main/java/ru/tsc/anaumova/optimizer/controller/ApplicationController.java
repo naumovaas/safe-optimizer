@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.tsc.anaumova.optimizer.component.Bootstrap;
 
 @Controller
-@RequestMapping("/optimizer")
 public class ApplicationController {
 
     @NotNull
@@ -17,6 +16,11 @@ public class ApplicationController {
     @Autowired
     public ApplicationController(@NotNull final Bootstrap bootstrap) {
         this.bootstrap = bootstrap;
+    }
+
+    @GetMapping("/")
+    public String index() {
+        return "Welcome to application";
     }
 
     @GetMapping("/get-items")

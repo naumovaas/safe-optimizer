@@ -8,7 +8,7 @@ public abstract class AbstractSafeService implements IAbstractSafeService{
     @NotNull
     protected final Safe safe;
 
-    public AbstractSafeService(Safe safe) {
+    public AbstractSafeService(@NotNull Safe safe) {
         this.safe = safe;
     }
 
