@@ -14,4 +14,6 @@ public interface IAbstractSafeService {
 
     List<Item> getItemsFromSafe();
 
+    void cleanSafe();
+
 }

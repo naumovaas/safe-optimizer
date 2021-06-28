@@ -47,6 +47,7 @@ public class Optimizer {
      * @param j индекс наибольшего значения на данном этапе.
      */
     private void findResult(@NotNull final int[][] matrix, int i, int j) {
+        safeService.cleanSafe();
         while (matrix[i][j] != 0) {
             if (isItemAddToSafe(matrix, i, j)) {
                 j -= items.get(i - 1).getSize();
