@@ -4,8 +4,8 @@ import com.google.gson.reflect.TypeToken;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Repository;
 import ru.tsc.anaumova.optimizer.component.ConverterJSON;
-import ru.tsc.anaumova.optimizer.component.IFileReader;
-import ru.tsc.anaumova.optimizer.component.ReaderJSON;
+import ru.tsc.anaumova.optimizer.component.FileReader;
+import ru.tsc.anaumova.optimizer.component.SingleStringReader;
 import ru.tsc.anaumova.optimizer.model.Item;
 import java.util.List;
 
@@ -18,9 +18,9 @@ public class ItemRepository implements IAbstractItemRepository {
     @Override
     @NotNull
     public List<Item> getAll(){
-        final IFileReader readerJSON = new ReaderJSON(path);
+        final FileReader reader = new SingleStringReader(path);
         final ConverterJSON<Item> converterJSON = new ConverterJSON<>();
-        final String jsonString = readerJSON.readFromFile();
+        final String jsonString = reader.readFromFile();
         return converterJSON.convertFromJSON(jsonString, new TypeToken<List<Item>>(){}.getType());
     }
 

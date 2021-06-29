@@ -6,25 +6,25 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class ReaderJSON implements IFileReader {
+public class SingleStringReader implements FileReader {
 
     @NotNull
     final String path;
 
-    public ReaderJSON(@NotNull String path) {
+    public SingleStringReader(@NotNull String path) {
         this.path = path;
     }
 
     @Override
     @NotNull
     public String readFromFile(){
-        String jsonString = "";
+        String singleString = "";
         try {
-            jsonString = new String(Files.readAllBytes(Paths.get(path)));
+            singleString = new String(Files.readAllBytes(Paths.get(path)));
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        return jsonString;
+        return singleString;
     }
 
 }

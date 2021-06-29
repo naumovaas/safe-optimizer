@@ -6,8 +6,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import ru.tsc.anaumova.optimizer.component.ConverterJSON;
-import ru.tsc.anaumova.optimizer.component.IFileReader;
-import ru.tsc.anaumova.optimizer.component.ReaderJSON;
+import ru.tsc.anaumova.optimizer.component.FileReader;
+import ru.tsc.anaumova.optimizer.component.SingleStringReader;
 import ru.tsc.anaumova.optimizer.model.Item;
 
 import java.util.List;
@@ -15,14 +15,14 @@ import java.util.List;
 public class FileReadConvertTest {
 
     @NotNull
-    private IFileReader readerJSON;
+    private FileReader readerJSON;
 
     @NotNull
     private ConverterJSON<Item> converterJSON;
 
     @Before
     public void init(){
-        readerJSON = new ReaderJSON("items.json");
+        readerJSON = new SingleStringReader("items.json");
         converterJSON = new ConverterJSON<>();
     }
 

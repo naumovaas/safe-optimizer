@@ -2,7 +2,7 @@ package ru.tsc.anaumova.optimizer.component;
 
 import org.jetbrains.annotations.NotNull;
 
-public interface IFileReader {
+public interface FileReader {
 
     @NotNull String readFromFile();
 

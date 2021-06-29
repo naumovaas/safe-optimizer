@@ -12,14 +12,10 @@ import ru.tsc.anaumova.optimizer.service.SafeService;
 public class SafeServiceTest {
 
     @NotNull
-    private Safe safe;
-
-    @NotNull
     private IAbstractSafeService safeService;
 
     @Before
     public void init() {
-        safe = new Safe(10);
         safeService = new SafeService();
     }
 
@@ -27,9 +23,9 @@ public class SafeServiceTest {
     public void addItemToSafeTest(){
         Item addedItem = new Item("test-item", 1, 1);
         safeService.addItemToSafe(addedItem);
-        Assert.assertNotNull(safe.getItems().get(0));
-        Assert.assertEquals(addedItem, safe.getItems().get(0));
-        Assert.assertEquals(1, safe.getItems().size());
+        Assert.assertNotNull(safeService.getItemsFromSafe().get(0));
+        Assert.assertEquals(addedItem, safeService.getItemsFromSafe().get(0));
+        Assert.assertEquals(1, safeService.getItemsFromSafe().size());
     }
 
 }
