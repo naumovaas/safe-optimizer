@@ -19,7 +19,15 @@ public class ApplicationController {
 
     @GetMapping("/get-items")
     String getProductsList(){
-        return new Gson().toJson(bootstrap.start());
+        return new Gson().toJson(bootstrap.startOptimize());
+
+        //@PostMapping
+        //@RequestParam(value = "safeCapacity") int safeCapacity
+        //Safe safe = new Safe(safeCapacity)
+        // safe.addOptimizedItems(items)
+        //return safe (to JSON)
+
+
     }
 
 }

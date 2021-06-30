@@ -29,7 +29,7 @@ public class Bootstrap {
         this.optimizer = optimizer;
     }
 
-    public List<Item> start(){
+    public List<Item> startOptimize(){
         optimizeSafe();
         return safeService.getItemsFromSafe();
     }
