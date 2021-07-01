@@ -38,7 +38,7 @@ public class Bootstrap {
      * Методом динамического программирования определяет набор предметов, имеющих наибольшую стоимость, и помещает их в сейф.
      */
     public void optimizeSafe(){
-        int[][] matrix = matrixCalculator.calcMatrix();
+        int[][] matrix = matrixCalculator.calc();
         optimizer.findResult(matrix);
     }
 

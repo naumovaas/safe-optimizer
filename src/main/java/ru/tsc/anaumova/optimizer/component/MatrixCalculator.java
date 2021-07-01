@@ -4,7 +4,6 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.tsc.anaumova.optimizer.model.Item;
-import ru.tsc.anaumova.optimizer.model.Safe;
 import ru.tsc.anaumova.optimizer.service.IAbstractSafeService;
 import ru.tsc.anaumova.optimizer.service.IItemService;
 
@@ -33,8 +32,8 @@ public class MatrixCalculator {
      * @return полученная матрица.
      */
     @NotNull
-    public int[][] calcMatrix(){
-        return calcMatrix(itemsCount, safeCapacity);
+    public int[][] calc(){
+        return calc(itemsCount, safeCapacity);
     }
 
     /**
@@ -45,7 +44,7 @@ public class MatrixCalculator {
      * @return полученная матрица.
      */
     @NotNull
-    private int[][] calcMatrix(final int itemCount, final int maxSafeCapacity){
+    private int[][] calc(final int itemCount, final int maxSafeCapacity){
         int[][] matrix = new int[itemCount + 1][maxSafeCapacity+1];
         for (int i = 1; i <= itemCount; i++)
             for (int safeCapacity = 1; safeCapacity <= maxSafeCapacity; safeCapacity++)
