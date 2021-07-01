@@ -15,15 +15,13 @@ public class MatrixCalculator {
     @NotNull
     private final List<Item> items;
 
-    private final int itemsCount;
-
-    private final int safeCapacity;
+    @NotNull
+    private final Safe safe;
 
     @Autowired
     public MatrixCalculator(@NotNull ItemService itemService, @NotNull Safe safe) {
         this.items = itemService.getAll();
-        this.itemsCount = items.size();
-        this.safeCapacity = safe.getCapacity();
+        this.safe = safe;
     }
 
     /**
@@ -33,22 +31,24 @@ public class MatrixCalculator {
      */
     @NotNull
     public int[][] calc(){
-        return calc(itemsCount, safeCapacity);
+        final int maxItemsCount = items.size();
+        final int maxSafeCapacity = safe.getCapacity();
+        return calc(maxItemsCount, maxSafeCapacity);
     }
 
     /**
      * Строит матрицу стоимостей сейфа для разных наборов допустимых предметов.
      *
-     * @param itemCount количество предметов.
+     * @param maxItemsCount количество предметов.
      * @param maxSafeCapacity вместимость сейфа.
      * @return полученная матрица.
      */
     @NotNull
-    private int[][] calc(final int itemCount, final int maxSafeCapacity){
-        int[][] matrix = new int[itemCount + 1][maxSafeCapacity+1];
-        for (int i = 1; i <= itemCount; i++)
+    private int[][] calc(final int maxItemsCount, final int maxSafeCapacity){
+        int[][] matrix = new int[maxItemsCount + 1][maxSafeCapacity+1];
+        for (int itemsCount = 1; itemsCount <= maxItemsCount; itemsCount++)
             for (int safeCapacity = 1; safeCapacity <= maxSafeCapacity; safeCapacity++)
-                matrix[i][safeCapacity] = calcElement(matrix, i, safeCapacity);
+                matrix[itemsCount][safeCapacity] = calcElement(matrix, itemsCount, safeCapacity);
         return matrix;
     }
 

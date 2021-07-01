@@ -4,17 +4,17 @@ import org.jetbrains.annotations.NotNull;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import ru.tsc.anaumova.optimizer.repository.IAbstractItemRepository;
 import ru.tsc.anaumova.optimizer.repository.ItemRepository;
+import ru.tsc.anaumova.optimizer.repository.ItemFileRepository;
 
-public class ItemRepositoryTest {
+public class ItemFileRepositoryTest {
 
     @NotNull
-    private IAbstractItemRepository repository;
+    private ItemRepository repository;
 
     @Before
     public void init() {
-        repository = new ItemRepository();
+        repository = new ItemFileRepository();
     }
 
     @Test

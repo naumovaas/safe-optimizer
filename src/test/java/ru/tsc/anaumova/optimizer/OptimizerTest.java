@@ -1,20 +1,5 @@
 package ru.tsc.anaumova.optimizer;
 
-import org.jetbrains.annotations.NotNull;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import ru.tsc.anaumova.optimizer.component.Optimizer;
-import ru.tsc.anaumova.optimizer.model.Item;
-import ru.tsc.anaumova.optimizer.model.Safe;
-import ru.tsc.anaumova.optimizer.repository.IAbstractItemRepository;
-import ru.tsc.anaumova.optimizer.repository.ItemRepository;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.mockito.Mockito.*;
-
 public class OptimizerTest {
 
 //    @NotNull

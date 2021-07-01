@@ -3,17 +3,17 @@ package ru.tsc.anaumova.optimizer.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.tsc.anaumova.optimizer.model.Item;
-import ru.tsc.anaumova.optimizer.repository.IAbstractItemRepository;
+import ru.tsc.anaumova.optimizer.repository.ItemRepository;
 
 import java.util.List;
 
 @Service
 public class ItemServiceImpl implements ItemService {
 
-    private final IAbstractItemRepository itemRepository;
+    private final ItemRepository itemRepository;
 
     @Autowired
-    public ItemServiceImpl(IAbstractItemRepository itemRepository) {
+    public ItemServiceImpl(ItemRepository itemRepository) {
         this.itemRepository = itemRepository;
     }
 

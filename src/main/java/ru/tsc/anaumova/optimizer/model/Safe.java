@@ -9,13 +9,10 @@ import java.util.List;
 @Component
 public class Safe {
 
-    private int capacity = 10;
+    private int capacity;
 
     @NotNull
     protected List<Item> items = new ArrayList<>();
-
-    public Safe() {
-    }
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;
@@ -28,10 +25,6 @@ public class Safe {
     @NotNull
     public List<Item> getItems() {
         return items;
-    }
-
-    public void clearSafe() {
-        items.clear();
     }
 
     public void addItemToSafe(@NotNull final Item item) {
