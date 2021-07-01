@@ -1,18 +1,23 @@
 package ru.tsc.anaumova.optimizer.model;
 
 import org.jetbrains.annotations.NotNull;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class Safe {
 
-    private final int capacity;
+    private int capacity = 10;
 
     @NotNull
     protected List<Item> items = new ArrayList<>();
 
-    public Safe(int capacity) {
+    public Safe() {
+    }
+
+    public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
 
@@ -23,6 +28,14 @@ public class Safe {
     @NotNull
     public List<Item> getItems() {
         return items;
+    }
+
+    public void clearSafe() {
+        items.clear();
+    }
+
+    public void addItemToSafe(@NotNull final Item item) {
+        items.add(item);
     }
 
 }

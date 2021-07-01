@@ -5,8 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.tsc.anaumova.optimizer.model.Item;
 import ru.tsc.anaumova.optimizer.model.Safe;
-import ru.tsc.anaumova.optimizer.service.IAbstractSafeService;
-import ru.tsc.anaumova.optimizer.service.IItemService;
+import ru.tsc.anaumova.optimizer.service.ItemService;
 
 import java.util.List;
 
@@ -17,16 +16,12 @@ public class Optimizer {
     private final List<Item> items;
 
     @NotNull
-    private final IAbstractSafeService safeService;
-
-    @NotNull
     private final Safe safe;
 
     @Autowired
-    public Optimizer(@NotNull IItemService itemService, @NotNull IAbstractSafeService safeService) {
-        this.safe = safeService.getSafe();
+    public Optimizer(@NotNull ItemService itemService, @NotNull Safe safe) {
+        this.safe = safe;
         this.items = itemService.getAll();
-        this.safeService = safeService;
     }
 
     /**
@@ -47,11 +42,11 @@ public class Optimizer {
      * @param j индекс наибольшего значения на данном этапе.
      */
     private void findResult(@NotNull final int[][] matrix, int i, int j) {
-        safeService.clearSafe();
+        safe.clearSafe();
         while (matrix[i][j] != 0) {
             if (isItemAddToSafe(matrix, i, j)) {
                 j -= items.get(i - 1).getSize();
-                safeService.addItemToSafe(items.get(i - 1));
+                safe.addItemToSafe(items.get(i - 1));
             }
             i --;
         }
