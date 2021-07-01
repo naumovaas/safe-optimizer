@@ -1,6 +1,5 @@
 package ru.tsc.anaumova.optimizer.controller;
 
-import com.google.gson.Gson;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,25 +21,11 @@ public class ApplicationController {
         this.safe = safe;
     }
 
-    @GetMapping("/get-items")
-    String getItemsList(){
-        return new Gson().toJson(bootstrap.startOptimize());
-
-        //@PostMapping
-        //@RequestParam(value = "safeCapacity") int safeCapacity
-        //Safe safe = new Safe(safeCapacity)
-        // safe.addOptimizedItems(items)
-        //return safe (to JSON)
-
-        //@RequestParam(value = "name") String name
-
-
-    }
-
     @PostMapping("/get-items")
-    String getItemsListPOST(@RequestParam int safeCapacity) {
+    Safe getItemsListPOST(@RequestParam int safeCapacity) {
         safe.setCapacity(safeCapacity);
-        return new Gson().toJson(bootstrap.startOptimize());
+        bootstrap.startOptimize();
+        return safe;
     }
 
 }

@@ -31,4 +31,8 @@ public class Safe {
         items.add(item);
     }
 
+    public void clearSafe() {
+        items.clear();
+    }
+
 }
