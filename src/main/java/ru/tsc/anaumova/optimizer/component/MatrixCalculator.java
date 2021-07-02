@@ -1,15 +1,11 @@
 package ru.tsc.anaumova.optimizer.component;
 
 import org.jetbrains.annotations.NotNull;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import ru.tsc.anaumova.optimizer.model.Item;
 import ru.tsc.anaumova.optimizer.model.Safe;
-import ru.tsc.anaumova.optimizer.service.ItemService;
 
 import java.util.List;
 
-@Component
 public class MatrixCalculator {
 
     @NotNull
@@ -18,9 +14,8 @@ public class MatrixCalculator {
     @NotNull
     private final Safe safe;
 
-    @Autowired
-    public MatrixCalculator(@NotNull ItemService itemService, @NotNull Safe safe) {
-        this.items = itemService.getAll();
+    public MatrixCalculator(@NotNull List<Item> items, @NotNull Safe safe) {
+        this.items = items;
         this.safe = safe;
     }
 

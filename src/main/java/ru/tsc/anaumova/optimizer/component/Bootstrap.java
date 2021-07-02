@@ -1,7 +1,5 @@
 package ru.tsc.anaumova.optimizer.component;
 
-import org.jetbrains.annotations.NotNull;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.tsc.anaumova.optimizer.model.Item;
 import ru.tsc.anaumova.optimizer.model.Safe;
@@ -11,25 +9,13 @@ import java.util.List;
 @Component
 public class Bootstrap {
 
-    @NotNull
-    private final Safe safe;
+    private MatrixCalculator matrixCalculator;
 
-    @NotNull
-    private final MatrixCalculator matrixCalculator;
+    private Optimizer optimizer;
 
-    @NotNull
-    private final Optimizer optimizer;
-
-    @Autowired
-    public Bootstrap(@NotNull Safe safe,
-                     @NotNull MatrixCalculator matrixCalculator,
-                     @NotNull Optimizer optimizer) {
-        this.safe = safe;
-        this.matrixCalculator = matrixCalculator;
-        this.optimizer = optimizer;
-    }
-
-    public List<Item> startOptimize(){
+    public List<Item> startOptimize(final List<Item> items, final Safe safe){
+        matrixCalculator = new MatrixCalculator(items, safe);
+        optimizer = new Optimizer(items, safe);
         optimizeSafe();
         return safe.getItems();
     }
