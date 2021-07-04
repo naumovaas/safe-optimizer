@@ -11,11 +11,6 @@ import ru.tsc.anaumova.optimizer.config.AppConfig;
 public class Application {
 
     public static void main(String[] args) {
-//        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
-//        Bootstrap bootstrap = context.getBean("bootstrap", Bootstrap.class);
-//        System.out.println(bootstrap.start());
-//        ((AnnotationConfigApplicationContext) context).close();
-
         SpringApplication.run(Application.class, args);
     }
 

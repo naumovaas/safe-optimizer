@@ -27,7 +27,7 @@ public class ApplicationController {
     }
 
     @PostMapping("/get-items")
-    Safe getItemsListPOST(@RequestParam int safeCapacity, @RequestParam String itemsString) {
+    Safe getItemsList(@RequestParam int safeCapacity, @RequestParam String itemsString) {
         safe.setCapacity(safeCapacity);
         final ConverterJson<Item> converterJSON = new ConverterJson<>();
         final List<Item> items = converterJSON.convertFromJSON(itemsString, new TypeToken<List<Item>>(){}.getType());

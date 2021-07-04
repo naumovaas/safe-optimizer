@@ -35,4 +35,8 @@ public class Item {
         return "title: " + title + "; cost: " + cost + "; size: " + size + ";";
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
 }

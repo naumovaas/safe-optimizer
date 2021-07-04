@@ -4,6 +4,10 @@ import org.jetbrains.annotations.NotNull;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringRunner;
 import ru.tsc.anaumova.optimizer.component.Optimizer;
 import ru.tsc.anaumova.optimizer.model.Item;
 import ru.tsc.anaumova.optimizer.model.Safe;
@@ -15,6 +19,8 @@ import java.util.List;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+@RunWith(SpringRunner.class)
+@ContextConfiguration(classes = TestConfig.class)
 public class OptimizerTest {
 
     @NotNull
@@ -23,11 +29,15 @@ public class OptimizerTest {
     @NotNull
     private int[][] matrix;
 
-    @NotNull
     private Safe safe;
 
     @NotNull
     private final List<Item> expectedResult = new ArrayList<>();
+
+    @Autowired
+    public void setSafe(@NotNull Safe safe) {
+        this.safe = safe;
+    }
 
     @Before
     public void init(){
@@ -43,8 +53,6 @@ public class OptimizerTest {
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100},
                 {0, 0, 0, 0, 0, 60, 60, 60, 60, 60, 100},
                 {0, 0, 0, 0, 0, 60, 60, 60, 60, 60, 120}};
-        safe = new Safe();
-        safe.setCapacity(10);
     }
 
     @Test
