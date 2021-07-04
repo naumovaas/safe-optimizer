@@ -6,7 +6,7 @@ import org.jetbrains.annotations.NotNull;
 import java.lang.reflect.Type;
 import java.util.List;
 
-public class ConverterJSON<T> {
+public class ConverterJson<T> {
 
     @NotNull
     public List<T> convertFromJSON (@NotNull final String jsonString, @NotNull Type type){

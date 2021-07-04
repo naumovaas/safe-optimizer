@@ -27,4 +27,10 @@ public class SafeTest {
         Assert.assertEquals(1, safe.getItems().size());
     }
 
+    @Test
+    public void clearSafeTest(){
+        safe.clearSafe();
+        Assert.assertEquals(0, safe.getItems().size());
+    }
+
 }
