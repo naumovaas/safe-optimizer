@@ -30,8 +30,7 @@ public class MatrixCalculatorTest {
         items.add(new Item("item - 1", 10, 100));
         items.add(new Item("item - 2", 5, 60));
         items.add(new Item("item - 3", 5, 60));
-        Safe safe = new Safe();
-        safe.setCapacity(10);
+        Safe safe = new Safe(10);
         matrixCalculator = new MatrixCalculator(items, safe);
     }
 

@@ -11,9 +11,7 @@ public class TestConfig {
     @Bean
     @Scope("prototype")
     public Safe safe() {
-        Safe safe = new Safe();
-        safe.setCapacity(10);
-        return safe;
+        return new Safe(10);
     }
 
 }

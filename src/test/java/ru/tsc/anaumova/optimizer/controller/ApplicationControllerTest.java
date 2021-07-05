@@ -36,7 +36,7 @@ public class ApplicationControllerTest {
     @Before
     public void init() {
         bootstrap = mock(Bootstrap.class);
-        when(bootstrap.startOptimize(new ArrayList<>(), new Safe())).thenReturn(new ArrayList<>());
+        when(bootstrap.startOptimize(new ArrayList<>(), new Safe(10))).thenReturn(new ArrayList<>());
     }
 
 

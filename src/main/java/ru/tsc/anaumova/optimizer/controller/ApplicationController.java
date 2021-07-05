@@ -17,18 +17,14 @@ public class ApplicationController {
     @NotNull
     private final Bootstrap bootstrap;
 
-    @NotNull
-    private final Safe safe;
-
     @Autowired
-    public ApplicationController(@NotNull final Bootstrap bootstrap, @NotNull final Safe safe) {
+    public ApplicationController(@NotNull final Bootstrap bootstrap) {
         this.bootstrap = bootstrap;
-        this.safe = safe;
     }
 
     @PostMapping("/get-items")
     Safe getItemsList(@RequestParam int safeCapacity, @RequestParam String itemsString) {
-        safe.setCapacity(safeCapacity);
+        Safe safe = new Safe(safeCapacity);
         final ConverterJson<Item> converterJSON = new ConverterJson<>();
         final List<Item> items = converterJSON.convertFromJSON(itemsString, new TypeToken<List<Item>>(){}.getType());
         bootstrap.startOptimize(items, safe);
