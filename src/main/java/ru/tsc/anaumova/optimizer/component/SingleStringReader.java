@@ -17,7 +17,7 @@ public class SingleStringReader implements FileReader {
 
     @Override
     @NotNull
-    public String readFromFile(){
+    public String readFromFile() {
         String singleString = "";
         try {
             singleString = new String(Files.readAllBytes(Paths.get(path)));

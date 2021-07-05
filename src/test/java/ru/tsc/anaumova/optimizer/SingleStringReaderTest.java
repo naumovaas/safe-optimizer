@@ -13,12 +13,12 @@ public class SingleStringReaderTest {
     private FileReader readerJSON;
 
     @Before
-    public void init(){
+    public void init() {
         readerJSON = new SingleStringReader("items.json");
     }
 
     @Test
-    public void readFromJsonTest(){
+    public void readFromJsonTest() {
         String jsonString = readerJSON.readFromFile();
         Assert.assertFalse(jsonString.isEmpty());
     }

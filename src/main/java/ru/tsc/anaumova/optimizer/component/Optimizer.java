@@ -24,7 +24,7 @@ public class Optimizer {
      *
      * @param matrix матрица стоимостей разных наборов допустимых предметов.
      */
-    public void findResult(@NotNull final int[][] matrix){
+    public void findResult(@NotNull final int[][] matrix) {
         findResult(matrix, getItemsCount(), getSafeCapacity());
     }
 
@@ -33,8 +33,8 @@ public class Optimizer {
      * Соответствующие предметы кладем в сейф.
      *
      * @param matrix матрица стоимостей разных наборов допустимых предметов.
-     * @param i индекс наибольшего значения на данном этапе.
-     * @param j индекс наибольшего значения на данном этапе.
+     * @param i      индекс наибольшего значения на данном этапе.
+     * @param j      индекс наибольшего значения на данном этапе.
      */
     private void findResult(@NotNull final int[][] matrix, int i, int j) {
         while (matrix[i][j] != 0) {
@@ -42,19 +42,19 @@ public class Optimizer {
                 j -= items.get(i - 1).getSize();
                 safe.addItemToSafe(items.get(i - 1));
             }
-            i --;
+            i--;
         }
     }
 
-    private boolean isItemAddToSafe(@NotNull final int[][] matrix, int i, int j){
+    private boolean isItemAddToSafe(@NotNull final int[][] matrix, int i, int j) {
         return matrix[i][j] != matrix[i - 1][j];
     }
 
-    private int getItemsCount(){
+    private int getItemsCount() {
         return items.size();
     }
 
-    private int getSafeCapacity(){
+    private int getSafeCapacity() {
         return safe.getCapacity();
     }
 

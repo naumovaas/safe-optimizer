@@ -18,7 +18,7 @@ public class ItemFileRepositoryTest {
     }
 
     @Test
-    public void getAllTest(){
+    public void getAllTest() {
         Assert.assertNotNull(repository.getAll());
     }
 

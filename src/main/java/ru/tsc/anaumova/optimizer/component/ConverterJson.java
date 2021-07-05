@@ -9,7 +9,7 @@ import java.util.List;
 public class ConverterJson<T> {
 
     @NotNull
-    public List<T> convertFromJSON (@NotNull final String jsonString, @NotNull Type type){
+    public List<T> convertFromJSON(@NotNull final String jsonString, @NotNull Type type) {
         final Gson gson = new Gson();
         return gson.fromJson(jsonString, type);
     }

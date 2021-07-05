@@ -10,7 +10,7 @@ import java.util.List;
 @Component
 public class Bootstrap {
 
-    public List<Item> startOptimize(final List<Item> items, final Safe safe){
+    public List<Item> startOptimize(final List<Item> items, final Safe safe) {
         MatrixCalculator matrixCalculator = new MatrixCalculator(items, safe);
         Optimizer optimizer = new Optimizer(items, safe);
         optimizeSafe(matrixCalculator, optimizer);
@@ -20,7 +20,7 @@ public class Bootstrap {
     /**
      * Методом динамического программирования определяет набор предметов, имеющих наибольшую стоимость, и помещает их в сейф.
      */
-    public void optimizeSafe(@NotNull MatrixCalculator matrixCalculator, @NotNull Optimizer optimizer){
+    public void optimizeSafe(@NotNull MatrixCalculator matrixCalculator, @NotNull Optimizer optimizer) {
         int[][] matrix = matrixCalculator.calc();
         optimizer.findResult(matrix);
     }

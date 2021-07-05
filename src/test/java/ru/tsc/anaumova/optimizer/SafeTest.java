@@ -22,7 +22,7 @@ public class SafeTest {
     }
 
     @Test
-    public void addItemToSafeTest(){
+    public void addItemToSafeTest() {
         Item addedItem = new Item("test-item", 1, 1);
         safe.addItemToSafe(addedItem);
         Assert.assertNotNull(safe.getItems().get(0));

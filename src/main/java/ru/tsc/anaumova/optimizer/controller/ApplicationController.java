@@ -26,7 +26,8 @@ public class ApplicationController {
     Safe getItemsList(@RequestParam int safeCapacity, @RequestParam String itemsString) {
         Safe safe = new Safe(safeCapacity);
         final ConverterJson<Item> converterJSON = new ConverterJson<>();
-        final List<Item> items = converterJSON.convertFromJSON(itemsString, new TypeToken<List<Item>>(){}.getType());
+        final List<Item> items = converterJSON.convertFromJSON(itemsString, new TypeToken<List<Item>>() {
+        }.getType());
         bootstrap.startOptimize(items, safe);
         return safe;
     }

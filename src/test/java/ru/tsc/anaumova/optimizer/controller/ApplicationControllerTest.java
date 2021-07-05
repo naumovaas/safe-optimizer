@@ -42,13 +42,11 @@ public class ApplicationControllerTest {
 
     @Test
     public void getItemsListTest() throws Exception {
-        final String jsonString = "[{\"title\": \"item - 1\", \"size\": \"10\", \"cost\": \"100\"}," +
-                "{\"title\": \"item - 2\", \"size\": \"5\", \"cost\": \"60\"}," +
-                "{\"title\": \"item - 3\", \"size\": \"5\", \"cost\": \"60\"}]";
+        final String jsonString = "[{\"title\": \"item - 1\", \"size\": \"10\", \"cost\": \"100\"}]";
 
         mockMvc.perform(post("/get-items")
-        .param("itemsString", jsonString)
-        .param("safeCapacity", "10"))
+                .param("itemsString", jsonString)
+                .param("safeCapacity", "10"))
                 .andExpect(status().isOk());
 
     }

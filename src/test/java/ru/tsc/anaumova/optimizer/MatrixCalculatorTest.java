@@ -21,9 +21,9 @@ public class MatrixCalculatorTest {
 
     @NotNull
     private final int[][] expectedResultMatrix = {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100},
-                                    {0, 0, 0, 0, 0, 60, 60, 60, 60, 60, 100},
-                                    {0, 0, 0, 0, 0, 60, 60, 60, 60, 60, 120}};
+            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100},
+            {0, 0, 0, 0, 0, 60, 60, 60, 60, 60, 100},
+            {0, 0, 0, 0, 0, 60, 60, 60, 60, 60, 120}};
 
     @Before
     public void init() {
@@ -35,7 +35,7 @@ public class MatrixCalculatorTest {
     }
 
     @Test
-    public void calcMatrixTest(){
+    public void calcMatrixTest() {
         Assert.assertArrayEquals(expectedResultMatrix, matrixCalculator.calc());
     }
 

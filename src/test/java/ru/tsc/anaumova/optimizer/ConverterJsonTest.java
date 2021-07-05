@@ -20,14 +20,15 @@ public class ConverterJsonTest {
             "{\"title\": \"item - 3\", \"size\": \"5\", \"cost\": \"60\"}]";
 
     @Before
-    public void init(){
+    public void init() {
         converterJSON = new ConverterJson<>();
     }
 
     @Test
-    public void readFromJsonTest(){
+    public void readFromJsonTest() {
 
-        List<Item> result = converterJSON.convertFromJSON(jsonString, new TypeToken<List<Item>>(){}.getType());
+        List<Item> result = converterJSON.convertFromJSON(jsonString, new TypeToken<List<Item>>() {
+        }.getType());
         Assert.assertNotNull(result);
         Assert.assertNotNull(result.get(0));
         Assert.assertEquals(3, result.size());

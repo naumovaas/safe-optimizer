@@ -40,7 +40,7 @@ public class OptimizerTest {
     }
 
     @Before
-    public void init(){
+    public void init() {
         List<Item> items = new ArrayList<>();
         items.add(new Item("item - 1", 10, 100));
         items.add(new Item("item - 2", 5, 60));
@@ -56,7 +56,7 @@ public class OptimizerTest {
     }
 
     @Test
-    public void findResultTest(){
+    public void findResultTest() {
         Optimizer optimizer = new Optimizer(repository.getAll(), safe);
         optimizer.findResult(matrix);
         List<Item> result = safe.getItems();
