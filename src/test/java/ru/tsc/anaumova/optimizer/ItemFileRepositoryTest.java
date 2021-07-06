@@ -7,6 +7,8 @@ import org.junit.Test;
 import ru.tsc.anaumova.optimizer.repository.ItemRepository;
 import ru.tsc.anaumova.optimizer.repository.ItemFileRepository;
 
+import java.io.IOException;
+
 public class ItemFileRepositoryTest {
 
     @NotNull
@@ -19,7 +21,11 @@ public class ItemFileRepositoryTest {
 
     @Test
     public void getAllTest() {
-        Assert.assertNotNull(repository.getAll());
+        try {
+            Assert.assertNotNull(repository.getAll());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

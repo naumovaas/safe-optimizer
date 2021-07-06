@@ -7,6 +7,8 @@ import org.junit.Test;
 import ru.tsc.anaumova.optimizer.component.FileReader;
 import ru.tsc.anaumova.optimizer.component.SingleStringReader;
 
+import java.io.IOException;
+
 public class SingleStringReaderTest {
 
     @NotNull
@@ -19,8 +21,12 @@ public class SingleStringReaderTest {
 
     @Test
     public void readFromJsonTest() {
-        String jsonString = readerJSON.readFromFile();
-        Assert.assertFalse(jsonString.isEmpty());
+        try {
+            String jsonString = readerJSON.readFromFile();
+            Assert.assertFalse(jsonString.isEmpty());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

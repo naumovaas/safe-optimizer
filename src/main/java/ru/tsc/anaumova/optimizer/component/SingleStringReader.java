@@ -17,14 +17,8 @@ public class SingleStringReader implements FileReader {
 
     @Override
     @NotNull
-    public String readFromFile() {
-        String singleString = "";
-        try {
-            singleString = new String(Files.readAllBytes(Paths.get(path)));
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-        return singleString;
+    public String readFromFile() throws IOException {
+        return new String(Files.readAllBytes(Paths.get(path)));
     }
 
 }

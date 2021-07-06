@@ -13,6 +13,7 @@ import ru.tsc.anaumova.optimizer.model.Item;
 import ru.tsc.anaumova.optimizer.model.Safe;
 import ru.tsc.anaumova.optimizer.repository.ItemRepository;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,7 +49,11 @@ public class OptimizerTest {
         expectedResult.add(new Item("item - 2", 5, 60));
         expectedResult.add(new Item("item - 3", 5, 60));
         repository = mock(ItemRepository.class);
-        when(repository.getAll()).thenReturn(items);
+        try {
+            when(repository.getAll()).thenReturn(items);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         matrix = new int[][]{{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100},
                 {0, 0, 0, 0, 0, 60, 60, 60, 60, 60, 100},
@@ -57,11 +62,14 @@ public class OptimizerTest {
 
     @Test
     public void findResultTest() {
-        Optimizer optimizer = new Optimizer(repository.getAll(), safe);
-        optimizer.findResult(matrix);
-        List<Item> result = safe.getItems();
-        Assert.assertEquals(expectedResult.size(), result.size());
-
+        try {
+            Optimizer optimizer = new Optimizer(repository.getAll(), safe);
+            optimizer.findResult(matrix);
+            List<Item> result = safe.getItems();
+            Assert.assertEquals(expectedResult.size(), result.size());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -8,6 +8,7 @@ import ru.tsc.anaumova.optimizer.component.FileReader;
 import ru.tsc.anaumova.optimizer.component.SingleStringReader;
 import ru.tsc.anaumova.optimizer.model.Item;
 
+import java.io.IOException;
 import java.util.List;
 
 @Repository
@@ -18,7 +19,7 @@ public class ItemFileRepository implements ItemRepository {
 
     @Override
     @NotNull
-    public List<Item> getAll() {
+    public List<Item> getAll() throws IOException {
         final FileReader reader = new SingleStringReader(path);
         final ConverterJson<Item> converterJSON = new ConverterJson<>();
         final String jsonString = reader.readFromFile();
