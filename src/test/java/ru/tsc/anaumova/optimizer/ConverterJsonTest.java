@@ -27,8 +27,7 @@ public class ConverterJsonTest {
     @Test
     public void readFromJsonTest() {
 
-        List<Item> result = converterJSON.convertFromJSON(jsonString, new TypeToken<List<Item>>() {
-        }.getType());
+        List<Item> result = converterJSON.convertFromJSON(jsonString, new TypeToken<List<Item>>(){}.getType());
         Assert.assertNotNull(result);
         Assert.assertNotNull(result.get(0));
         Assert.assertEquals(3, result.size());

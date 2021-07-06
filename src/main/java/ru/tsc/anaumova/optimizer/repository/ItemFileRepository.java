@@ -23,8 +23,7 @@ public class ItemFileRepository implements ItemRepository {
         final FileReader reader = new SingleStringReader(path);
         final ConverterJson<Item> converterJSON = new ConverterJson<>();
         final String jsonString = reader.readFromFile();
-        return converterJSON.convertFromJSON(jsonString, new TypeToken<List<Item>>() {
-        }.getType());
+        return converterJSON.convertFromJSON(jsonString, new TypeToken<List<Item>>(){}.getType());
     }
 
 }
