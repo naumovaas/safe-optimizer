@@ -12,6 +12,7 @@ import ru.tsc.anaumova.optimizer.component.Optimizer;
 import ru.tsc.anaumova.optimizer.model.Item;
 import ru.tsc.anaumova.optimizer.model.Safe;
 import ru.tsc.anaumova.optimizer.repository.ItemRepository;
+import ru.tsc.anaumova.optimizer.service.ItemService;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ import static org.mockito.Mockito.when;
 public class OptimizerTest {
 
     @NotNull
-    private ItemRepository repository;
+    private ItemService service;
 
     @NotNull
     private int[][] matrix;
@@ -48,9 +49,9 @@ public class OptimizerTest {
         items.add(new Item("item - 3", 5, 60));
         expectedResult.add(new Item("item - 2", 5, 60));
         expectedResult.add(new Item("item - 3", 5, 60));
-        repository = mock(ItemRepository.class);
+        service = mock(ItemService.class);
         try {
-            when(repository.getAll()).thenReturn(items);
+            when(service.getAll()).thenReturn(items);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -63,7 +64,7 @@ public class OptimizerTest {
     @Test
     public void findResultTest() {
         try {
-            Optimizer optimizer = new Optimizer(repository.getAll(), safe);
+            Optimizer optimizer = new Optimizer(service.getAll(), safe);
             optimizer.findResult(matrix);
             List<Item> result = safe.getItems();
             Assert.assertEquals(expectedResult.size(), result.size());
