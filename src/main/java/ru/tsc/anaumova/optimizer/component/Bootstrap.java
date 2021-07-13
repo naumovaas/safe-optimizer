@@ -15,6 +15,7 @@ public class Bootstrap {
         Optimizer optimizer = new Optimizer(items, safe);
         optimizeSafe(matrixCalculator, optimizer);
         return safe.getItems();
+        //TODO объединить методы
     }
 
     /**

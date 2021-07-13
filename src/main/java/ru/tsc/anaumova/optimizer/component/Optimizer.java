@@ -39,7 +39,7 @@ public class Optimizer {
     private void findResult(@NotNull final int[][] matrix, int i, int j) {
         while (matrix[i][j] != 0) {
             if (isItemAddToSafe(matrix, i, j)) {
-                j -= items.get(i - 1).getSize();
+                j = j - items.get(i - 1).getSize();
                 safe.addItemToSafe(items.get(i - 1));
             }
             i--;

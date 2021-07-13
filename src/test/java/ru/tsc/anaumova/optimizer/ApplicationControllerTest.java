@@ -1,4 +1,4 @@
-package ru.tsc.anaumova.optimizer.controller;
+package ru.tsc.anaumova.optimizer;
 
 import org.jetbrains.annotations.NotNull;
 import org.junit.Before;
