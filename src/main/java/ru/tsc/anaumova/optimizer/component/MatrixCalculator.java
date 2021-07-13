@@ -52,7 +52,7 @@ public class MatrixCalculator {
     private int calcElement(@NotNull final int[][] matrix, final int i, final int j) {
         int result;
         int costSumWithoutCurrentItem = matrix[i - 1][j];
-        if (isEnoughSpaceForItem(i, j)) {
+        if (isItemSizeLessThenSafeCapacity(i, j)) {
             int costSumWithCurrentItem = matrix[i - 1][j - items.get(i - 1).getSize()] + items.get(i - 1).getCost();
             result = Math.max(costSumWithoutCurrentItem, costSumWithCurrentItem);
         } else {
@@ -61,8 +61,7 @@ public class MatrixCalculator {
         return result;
     }
 
-    //TODO переименовать, что размер итема меньше текущего места в сейфе isSIzeItemLessThenSafeCapacity
-    private boolean isEnoughSpaceForItem(final int itemIndex, final int safeCapacity) {
+    private boolean isItemSizeLessThenSafeCapacity(final int itemIndex, final int safeCapacity) {
         return safeCapacity >= items.get(itemIndex - 1).getSize();
     }
 

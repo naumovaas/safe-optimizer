@@ -5,15 +5,15 @@ import org.jetbrains.annotations.NotNull;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import ru.tsc.anaumova.optimizer.component.ConverterJson;
+import ru.tsc.anaumova.optimizer.component.ConverterJsonToItemList;
 import ru.tsc.anaumova.optimizer.model.Item;
 
 import java.util.List;
 
-public class ConverterJsonTest {
+public class ConverterJsonToItemListTest {
 
     @NotNull
-    private ConverterJson<Item> converterJSON;
+    private ConverterJsonToItemList converterJSONToItemList;
 
     private final String jsonString = "[{\"title\": \"item - 1\", \"size\": \"10\", \"cost\": \"100\"}," +
             "{\"title\": \"item - 2\", \"size\": \"5\", \"cost\": \"60\"}," +
@@ -21,13 +21,13 @@ public class ConverterJsonTest {
 
     @Before
     public void init() {
-        converterJSON = new ConverterJson<>();
+        converterJSONToItemList = new ConverterJsonToItemList();
     }
 
     @Test
     public void readFromJsonTest() {
 
-        List<Item> result = converterJSON.convertFromJSON(jsonString, new TypeToken<List<Item>>(){}.getType());
+        List<Item> result = converterJSONToItemList.convertFromJsonToList(jsonString);
         Assert.assertNotNull(result);
         Assert.assertNotNull(result.get(0));
         Assert.assertEquals(3, result.size());

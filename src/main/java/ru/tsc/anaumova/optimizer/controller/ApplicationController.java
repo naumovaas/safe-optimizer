@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.tsc.anaumova.optimizer.component.Bootstrap;
 import ru.tsc.anaumova.optimizer.component.ConverterJson;
+import ru.tsc.anaumova.optimizer.component.ConverterJsonToItemList;
 import ru.tsc.anaumova.optimizer.model.Item;
 import ru.tsc.anaumova.optimizer.model.Safe;
 
@@ -25,9 +26,8 @@ public class ApplicationController {
     @PostMapping("/get-items")
     Safe getItemsList(@RequestParam int safeCapacity, @RequestParam String itemsString) {
         Safe safe = new Safe(safeCapacity);
-        final ConverterJson<Item> converterJSON = new ConverterJson<>();
-        final List<Item> items = converterJSON.convertFromJSON(itemsString, new TypeToken<List<Item>>() {
-        }.getType());
+        final ConverterJson<Item> converter = new ConverterJsonToItemList();
+        final @NotNull List<Item> items = converter.convertFromJsonToList(itemsString);
         bootstrap.startOptimize(items, safe);
         return safe;
     }
