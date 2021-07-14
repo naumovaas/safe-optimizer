@@ -3,11 +3,13 @@ package ru.tsc.anaumova.optimizer.component;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.stereotype.Component;
 import ru.tsc.anaumova.optimizer.model.Item;
 
 import java.lang.reflect.Type;
 import java.util.List;
 
+@Component
 public class ConverterJsonToItemList implements ConverterJson<Item> {
 
     private final Type type = new TypeToken<List<Item>>() {}.getType();

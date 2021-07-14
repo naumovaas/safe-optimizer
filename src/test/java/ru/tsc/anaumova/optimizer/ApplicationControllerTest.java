@@ -1,6 +1,5 @@
 package ru.tsc.anaumova.optimizer;
 
-import org.jetbrains.annotations.NotNull;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,17 +9,14 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import ru.tsc.anaumova.optimizer.TestConfig;
 import ru.tsc.anaumova.optimizer.component.Bootstrap;
-import ru.tsc.anaumova.optimizer.model.Item;
 import ru.tsc.anaumova.optimizer.model.Safe;
 
 import java.util.ArrayList;
 
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest
@@ -36,7 +32,7 @@ public class ApplicationControllerTest {
     @Before
     public void init() {
         bootstrap = mock(Bootstrap.class);
-        when(bootstrap.startOptimize(new ArrayList<>(), new Safe(10))).thenReturn(new ArrayList<>());
+        doNothing().when(bootstrap).startOptimize(new ArrayList<>(), new Safe(10));
     }
 
 

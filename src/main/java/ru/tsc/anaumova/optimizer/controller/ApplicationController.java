@@ -1,12 +1,10 @@
 package ru.tsc.anaumova.optimizer.controller;
 
-import com.google.gson.reflect.TypeToken;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.tsc.anaumova.optimizer.component.Bootstrap;
 import ru.tsc.anaumova.optimizer.component.ConverterJson;
-import ru.tsc.anaumova.optimizer.component.ConverterJsonToItemList;
 import ru.tsc.anaumova.optimizer.model.Item;
 import ru.tsc.anaumova.optimizer.model.Safe;
 
@@ -18,15 +16,18 @@ public class ApplicationController {
     @NotNull
     private final Bootstrap bootstrap;
 
+    @NotNull
+    private final ConverterJson<Item> converter;
+
     @Autowired
-    public ApplicationController(@NotNull final Bootstrap bootstrap) {
+    public ApplicationController(@NotNull final Bootstrap bootstrap, @NotNull ConverterJson<Item> converter) {
         this.bootstrap = bootstrap;
+        this.converter = converter;
     }
 
     @PostMapping("/get-items")
     Safe getItemsList(@RequestParam int safeCapacity, @RequestParam String itemsString) {
         Safe safe = new Safe(safeCapacity);
-        final ConverterJson<Item> converter = new ConverterJsonToItemList();
         final @NotNull List<Item> items = converter.convertFromJsonToList(itemsString);
         bootstrap.startOptimize(items, safe);
         return safe;
