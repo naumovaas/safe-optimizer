@@ -11,9 +11,9 @@ public class Bootstrap {
 
     public void startOptimize(final List<Item> items, final Safe safe) {
         MatrixCalculator matrixCalculator = new MatrixCalculator(items, safe);
-        Optimizer optimizer = new Optimizer(items, safe);
         int[][] matrix = matrixCalculator.calc();
-        optimizer.findResult(matrix);
+        Optimizer optimizer = new Optimizer(items, safe, matrix);
+        optimizer.findResult();
     }
 
 }

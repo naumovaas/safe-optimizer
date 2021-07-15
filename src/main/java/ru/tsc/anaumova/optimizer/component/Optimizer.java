@@ -14,29 +14,31 @@ public class Optimizer {
     @NotNull
     private final Safe safe;
 
-    public Optimizer(@NotNull List<Item> items, @NotNull Safe safe) {
+    @NotNull
+    private final int[][] matrix;
+
+    public Optimizer(@NotNull List<Item> items, @NotNull Safe safe, @NotNull int[][] matrix) {
         this.items = items;
         this.safe = safe;
+        this.matrix = matrix;
     }
 
     /**
      * Для переданой матрицы запускает метод определения предметов, составляющих оптимальное решение.
      *
-     * @param matrix матрица стоимостей разных наборов допустимых предметов.
      */
-    public void findResult(@NotNull final int[][] matrix) {
-        findResult(matrix, getItemsCount(), getSafeCapacity());
+    public void findResult() {
+        findResult(getItemsCount(), getSafeCapacity());
     }
 
     /**
      * Восстанавливает путь от наибольшего значения в матрице к началу.
      * Соответствующие предметы кладем в сейф.
      *
-     * @param matrix матрица стоимостей разных наборов допустимых предметов.
      * @param i      индекс наибольшего значения на данном этапе.
      * @param j      индекс наибольшего значения на данном этапе.
      */
-    private void findResult(@NotNull final int[][] matrix, int i, int j) {
+    private void findResult(int i, int j) {
         while (matrix[i][j] != 0) {
             if (isItemAddToSafe(matrix, i, j)) {
                 j = j - items.get(i - 1).getSize();

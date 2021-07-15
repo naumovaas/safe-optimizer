@@ -50,8 +50,8 @@ public class OptimizerTest {
 
     @Test
     public void findResultTest() {
-        Optimizer optimizer = new Optimizer(items, safe);
-        optimizer.findResult(matrix);
+        Optimizer optimizer = new Optimizer(items, safe, matrix);
+        optimizer.findResult();
         List<Item> result = safe.getItems();
         Assert.assertEquals(expectedResult.size(), result.size());
     }
