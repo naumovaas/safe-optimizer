@@ -42,12 +42,12 @@ public class MatrixCalculator {
     private int[][] calc(final int maxItemsCount, final int maxSafeCapacity) {
         int[][] matrix = new int[maxItemsCount + 1][maxSafeCapacity + 1];
         for (int itemsCount = 1; itemsCount <= maxItemsCount; itemsCount++) {
-            calcSafeCostForItem(matrix[itemsCount - 1], matrix[itemsCount], itemsCount);
+            calcSafeCostWithItem(matrix[itemsCount - 1], matrix[itemsCount], itemsCount);
         }
         return matrix;
     }
 
-    private void calcSafeCostForItem(int[] previousSafeCosts, int[] safeCost, int itemsCount) {
+    private void calcSafeCostWithItem(int[] previousSafeCosts, int[] safeCost, int itemsCount) {
         final int maxSafeCapacity = safe.getCapacity();
         for (int safeCapacity = 1; safeCapacity <= maxSafeCapacity; safeCapacity++) {
             safeCost[safeCapacity] = calcElement(previousSafeCosts, itemsCount, safeCapacity);
