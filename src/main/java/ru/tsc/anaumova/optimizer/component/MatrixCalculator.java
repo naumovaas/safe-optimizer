@@ -42,18 +42,23 @@ public class MatrixCalculator {
     private int[][] calc(final int maxItemsCount, final int maxSafeCapacity) {
         int[][] matrix = new int[maxItemsCount + 1][maxSafeCapacity + 1];
         for (int itemsCount = 1; itemsCount <= maxItemsCount; itemsCount++) {
-            for (int safeCapacity = 1; safeCapacity <= maxSafeCapacity; safeCapacity++) {
-                matrix[itemsCount][safeCapacity] = calcElement(matrix, itemsCount, safeCapacity);
-            }
+            calcSafeCostForItem(matrix[itemsCount - 1], matrix[itemsCount], itemsCount);
         }
         return matrix;
     }
 
-    private int calcElement(@NotNull final int[][] matrix, final int i, final int j) {
+    private void calcSafeCostForItem(int[] previousSafeCosts, int[] safeCost, int itemsCount) {
+        final int maxSafeCapacity = safe.getCapacity();
+        for (int safeCapacity = 1; safeCapacity <= maxSafeCapacity; safeCapacity++) {
+            safeCost[safeCapacity] = calcElement(previousSafeCosts, itemsCount, safeCapacity);
+        }
+    }
+
+    private int calcElement(@NotNull final int[] safeCostForPreviousItem , final int i, final int j) {
         int result;
-        int costSumWithoutCurrentItem = matrix[i - 1][j];
+        int costSumWithoutCurrentItem = safeCostForPreviousItem[j];
         if (isItemSizeLessThenSafeCapacity(i, j)) {
-            int costSumWithCurrentItem = matrix[i - 1][j - items.get(i - 1).getSize()] + items.get(i - 1).getCost();
+            int costSumWithCurrentItem = safeCostForPreviousItem[j - items.get(i - 1).getSize()] + items.get(i - 1).getCost();
             result = Math.max(costSumWithoutCurrentItem, costSumWithCurrentItem);
         } else {
             result = costSumWithoutCurrentItem;
