@@ -26,31 +26,31 @@ public class MatrixCalculator {
      */
     @NotNull
     public int[][] calc() {
-        final int maxItemsCount = items.size();
+        final int maxItemNumber = items.size();
         final int maxSafeCapacity = safe.getCapacity();
-        return calc(maxItemsCount, maxSafeCapacity);
+        return calc(maxItemNumber, maxSafeCapacity);
     }
 
     /**
      * Строит матрицу стоимостей сейфа для разных наборов допустимых предметов.
      *
-     * @param maxItemsCount   количество предметов.
+     * @param maxItemNumber   количество предметов.
      * @param maxSafeCapacity вместимость сейфа.
      * @return полученная матрица.
      */
     @NotNull
-    private int[][] calc(final int maxItemsCount, final int maxSafeCapacity) {
-        int[][] matrix = new int[maxItemsCount + 1][maxSafeCapacity + 1];
-        for (int itemsCount = 1; itemsCount <= maxItemsCount; itemsCount++) {
-            calcSafeCostWithItem(matrix[itemsCount - 1], matrix[itemsCount], itemsCount);
+    private int[][] calc(final int maxItemNumber, final int maxSafeCapacity) {
+        int[][] matrix = new int[maxItemNumber + 1][maxSafeCapacity + 1];
+        for (int itemNumber = 1; itemNumber <= maxItemNumber; itemNumber++) {
+            calcSafeCostWithItem(matrix[itemNumber - 1], matrix[itemNumber], itemNumber);
         }
         return matrix;
     }
 
-    private void calcSafeCostWithItem(int[] previousSafeCosts, int[] safeCost, int itemsCount) {
+    private void calcSafeCostWithItem(int[] previousSafeCosts, int[] safeCost, int itemNumber) {
         final int maxSafeCapacity = safe.getCapacity();
         for (int safeCapacity = 1; safeCapacity <= maxSafeCapacity; safeCapacity++) {
-            safeCost[safeCapacity] = calcElement(previousSafeCosts, itemsCount, safeCapacity);
+            safeCost[safeCapacity] = calcElement(previousSafeCosts, itemNumber, safeCapacity);
         }
     }
 
